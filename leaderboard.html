@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="./images/favicon.png" type="image/png" sizes="16x16">
+<title>leaderboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <style>
+ body {
+    background: linear-gradient(to bottom, #91d2eb, #afdeee); 
+  }
+  .bttn {
+    border: none;
+    width: 100%;
+    background-color: rgb(127, 184, 241);
+    color: rgb(232, 235, 239);
+    padding: 10px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .bttn:hover {
+    background: rgb(144, 217, 241);
+  }
+
+  input[name="name"],
+  textarea[name="msg"] {
+    width: 100%; 
+    padding: 8px; 
+    font-size: 14px; 
+    background: linear-gradient(to bottom, #7ebeeb, #60bbf8);
+    border: none;
+    color: white;
+  }
+
+  input[name="name"]:focus,
+  textarea[name="msg"]:focus {
+    outline: none;
+    background: linear-gradient(to bottom, #2980b9, #3498db); 
+  }
+</style>
+
+</head>
+<body>
+<a href="index.html" class="bttn home">Quiz</a>
+<div class="container">
+
+<div class="panel panel-default" style="margin-top:50px">
+  <div class="panel-body">
+    <h3>LEADERBOARD</h3>
+    <hr>
+    <form name="frm" id="form1">
+	<div class="form-group">
+	  <label for="usr">name:</label>
+	  <input type="text" class="form-control" name="name" id="name" required>
+	</div>
+    <div class="form-group">
+      <label for="comment">score:</label>
+      <textarea class="form-control" rows="5" name="msg" id="score" required></textarea>
+    </div>
+	 <input type="submit" id="butsave" name="save" class="btn btn-primary" value="Submit">
+  </form>
+  </div>
+</div>
+  
+<h4>LEADERBOARD</h4>  
+<div id="questions"></div>
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("form1").addEventListener("submit", function(e) {
+  e.preventDefault();
+  
+  var name = document.getElementById("name").value;
+  var score = document.getElementById("score").value;
+
+  if (typeof(Storage) !== "undefined") {
+    var leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    
+    leaderboard.push({ name: name, score: score });
+
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+    displayLeaderboard(leaderboard);
+  } else {
+    alert("Local storage is not supported in your browser.");
+  }
+});
+
+function displayLeaderboard(leaderboard) {
+  var leaderboardDiv = document.getElementById("questions");
+  leaderboardDiv.innerHTML = ""; 
+  
+  if (leaderboard.length > 0) {
+    var leaderboardTable = document.createElement("table");
+    leaderboardTable.classList.add("table");
+    var headerRow = leaderboardTable.insertRow(0);
+    var nameHeader = headerRow.insertCell(0);
+    nameHeader.innerHTML = "Name";
+    var scoreHeader = headerRow.insertCell(1);
+    scoreHeader.innerHTML = "Score";
+
+    for (var i = 0; i < leaderboard.length; i++) {
+      var row = leaderboardTable.insertRow(i + 1);
+      var nameCell = row.insertCell(0);
+      var scoreCell = row.insertCell(1);
+      nameCell.innerHTML = leaderboard[i].name;
+      scoreCell.innerHTML = leaderboard[i].score;
+    }
+
+    leaderboardDiv.appendChild(leaderboardTable);
+  } else {
+    leaderboardDiv.innerHTML = "No entries in the leaderboard yet.";
+  }
+}
+
+if (typeof(Storage) !== "undefined") {
+  var leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+  displayLeaderboard(leaderboard);
+}
+</script>
+</body>
+</html>

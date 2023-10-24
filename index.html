@@ -1,0 +1,97 @@
+<DOCTYPE html>
+    <html lang="id">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quizzz</title>
+        <link rel="stylesheet" href="style.css" />
+      </head>
+      <body>
+        <main id="container">
+          <div class="start_container">
+            <div class="start_btn"><button>Take Quiz</button></div>
+            <div class="leaderboard">
+              <button id="leaderboardButton">Leaderboard</button>
+            </div>
+          </div>
+          <div class="name_box">
+            <input type="text" class="name" placeholder="What is your name?" />
+            <input type="button" class="name_btn" value="Lets get started" />
+          </div>
+          <div class="instructions">
+            <div class="info_title">
+              <span>Rules</span>
+            </div>
+            <div class="info_list">
+              <div class="info">
+                1.You have only <span>15 seconds</span> per question.
+              </div>
+              <div class="info">
+                2. You cant change the answer after selecting it.
+              </div>
+              <div class="info">
+                3. you cannot select an aption after the time is up.
+              </div>
+              <div class="info">
+                4. You cannot exit the quiz in the middle.
+              </div>
+            </div>
+            <div class="buttons">
+              <button class="quit">Give up</button>
+              <button class="restart">Start</button>
+            </div>
+          </div>
+          <div class="math-quiz">
+            <header>
+              <div class="title">Quiz</div>
+              <div class="timer">
+                <div class="time_text">Remaining time</div>
+                <div class="timer_sec">15</div>
+              </div>
+              <div class="time_line"></div>
+            </header>
+            <section>
+              <div>
+                <span id="questions"
+                  ><p id="num1"></p>
+                  X
+                  <p id="num2"></p
+                ></span>
+              </div>
+              <div class="option_list">
+                <div class="option" id="option1"></div>
+                <div class="option" id="option2"></div>
+                <div class="option" id="option3"></div>
+                <div class="option" id="option4"></div>
+              </div>
+            </section>
+            <footer>
+              <div class="points">
+                <div class="point_text">Your score</div>
+                <div class="point_no">0</div>
+              </div>
+              <button class="next_btn">Show Results</button>
+            </footer>
+          </div>
+          <div class="result_box">
+            <div>
+                Highest Score:
+              <p>95 Points</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-crown"></i>
+            </div>
+            <div class="complete_text">
+                Heyy! You have successfully completed the Quiz
+            </div>
+            <div class="score_text"></div>
+            <div class="buttons">
+              <button class="quit">Play again</button>
+            </div>
+          </div>
+        </main>
+      </body>
+      <script type="text/javascript" src="script.js">
+      </script>
+    </html>
+  </DOCTYPE>
